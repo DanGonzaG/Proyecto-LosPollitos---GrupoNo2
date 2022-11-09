@@ -45,6 +45,8 @@ public class Pfinal {
                                 break;
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Registrar una categoría");
+                                categoria NuevaCategoria = new categoria();
+                                String almacen[] = NuevaCategoria.llenar();
                                 break;
                             case 4:
                                 opc1 = 4;
