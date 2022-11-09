@@ -2,7 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
  */
-package com.sc202.supermercado;
+
+package com.sc202.pfinal;
 
 import javax.swing.JOptionPane;
 
@@ -10,7 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author DanGG
  */
-public class Supermercado {
+public class Pfinal {
 
     public static void main(String[] args) {
         int continuar = 0;
@@ -44,6 +45,8 @@ public class Supermercado {
                                 break;
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Registrar una categoría");
+                                categoria NuevaCategoria = new categoria();
+                                String almacen[] = NuevaCategoria.llenar();
                                 break;
                             case 4:
                                 opc1 = 4;
