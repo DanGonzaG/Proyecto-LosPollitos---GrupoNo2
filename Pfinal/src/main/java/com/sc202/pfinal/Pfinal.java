@@ -42,6 +42,9 @@ public class Pfinal {
                                 break;
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Registrar una marca");
+                                marca NuevaMarca = new marca();
+                                String almacen1[]=NuevaMarca.Llenar();
+                                NuevaMarca.mostrar(almacen1);
                                 break;
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Registrar una categoría");
