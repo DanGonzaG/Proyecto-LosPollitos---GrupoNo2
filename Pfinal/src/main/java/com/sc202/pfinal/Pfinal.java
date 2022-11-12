@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
+/*EN TERMINOS GENERALES EL POGRAMA ESTA PLANEADO PARA TENER TRES ARREGLOS, DOS DE ELLOS UNIDEMENSIONALES (MARCA Y CATEGORIA) Y OTRO 
+BIDIMENSIONAL QUE CONTIENE PRODUCTO Y TODOS LOS ATRIBUTOS DE ESTE OBJETO*/
 package com.sc202.pfinal;
 
 import javax.swing.JOptionPane;
@@ -38,17 +35,36 @@ public class Pfinal {
                                 + "\n4 Regresar"));
                         switch (opc1) {
                             case 1:
+                                /**/
+                                /*Registrar producto almcenará todos los datos del inventario */
                                 JOptionPane.showMessageDialog(null, "Registrar nuevos productos");
+                                Producto nProducto = new Producto();//pendiente crear constructor
+                                Categoria nCategoria = new Categoria();
+                                Marca nMarca = new Marca();
+                                String lista[];
+
+                                nCategoria.setCategoria(JOptionPane.showInputDialog("Digite Categoria"));
+                                nMarca.setMarca(JOptionPane.showInputDialog("Digite Marca"));
+                                nProducto.setProducto(JOptionPane.showInputDialog("Digite Producto"));
+
+                                lista = cProducto(nCategoria, nMarca, nProducto);
+                                
+                                //ESTE FOR SOLO SE USA PARA PRUEBAS DE RETORNO DE LOS DATOS PERO FALTA COLOCAR EL JOPTIONPANE
+                                for (int x = 0; x < 3; x++) {
+                                    System.out.print(lista[x] + " ");
+                                }
                                 break;
                             case 2:
+                                //CREA EL ARRREGLO QUE ALMACENARÁ LOS DATOS DE MARCAS, este arreglo es idependiente de arreglo de productos
                                 JOptionPane.showMessageDialog(null, "Registrar una marca");
-                                marca NuevaMarca = new marca();
-                                String almacen1[]=NuevaMarca.Llenar();
+                                Marca NuevaMarca = new Marca();
+                                String almacen1[] = NuevaMarca.Llenar();
                                 NuevaMarca.mostrar(almacen1);
                                 break;
                             case 3:
+                                //CREA EL ARRREGLO QUE ALMACENARÁ LOS DATOS DE CATEGORIAS, este arreglo es idependiente de arreglo de productos
                                 JOptionPane.showMessageDialog(null, "Registrar una categoría");
-                                categoria NuevaCategoria = new categoria();
+                                Categoria NuevaCategoria = new Categoria();
                                 String almacen[] = NuevaCategoria.llenar();
                                 break;
                             case 4:
@@ -76,5 +92,18 @@ public class Pfinal {
             }
         }
         System.out.println("Hello World!");
+    }
+    
+    public static String[] cProducto(Categoria categoria, Marca marca, Producto producto) {
+        String lista[] = new String[3];
+        /*categoria.setCategoria(JOptionPane.showInputDialog("Digite Categoria"));
+        marca.setMarca(JOptionPane.showInputDialog("Digite Marca"));
+        producto.setProducto(JOptionPane.showInputDialog("Digite Producto"));*/
+
+        lista[0] = categoria.getCategoria();
+        lista[1] = marca.getMarca();
+        lista[2] = producto.getProducto();
+
+        return lista;
     }
 }
