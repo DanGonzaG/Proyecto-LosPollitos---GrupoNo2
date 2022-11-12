@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
  *
  * @author familia barquero alv
  */
-public class categoria {
+public class Categoria {
 
     private String nCategoria[];
+    private String categoria;
 
     public String[] llenar() {
         int salir = 2;
@@ -37,5 +38,14 @@ public class categoria {
     public void setnCategoria(String[] nCategoria) {
         this.nCategoria = nCategoria;
     }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+    
 
 }
