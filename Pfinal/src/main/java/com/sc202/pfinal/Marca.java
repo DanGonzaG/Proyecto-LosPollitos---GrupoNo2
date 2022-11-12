@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
  *
  * @author XPC
  */
-class marca {
+class Marca {
 
     private String nMarca[];
+    private String marca;
 
     public String[] Llenar() {
         int salir = 2;
@@ -40,4 +41,13 @@ class marca {
     public void setnMarca(String[] nMarca) {
         this.nMarca = nMarca;
     }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+    
 }
