@@ -12,9 +12,8 @@ public class Producto {
     private String precio;
     private String cantidad;
     private String producto;
-    private Marca marca;
     
-    
+    private Marca marca;      
     private Categoria categoria;
 
     public String getPrecio() {
