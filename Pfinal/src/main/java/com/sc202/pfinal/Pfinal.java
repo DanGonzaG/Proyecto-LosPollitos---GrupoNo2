@@ -15,9 +15,7 @@ public class Pfinal {
     public static void main(String[] args) {
 
         Categoria[] ListaCategoria = new Categoria[2];
-
         Marca[] ListaMarca = new Marca[2];
-
         Producto[] Inventario = new Producto[2];
 
         int continuar = 0;
@@ -85,7 +83,7 @@ public class Pfinal {
                     break;
             }
         }
-        System.out.println("Hello World!");
+       
     }
 
     public static Categoria[] llenarCategoria(Categoria lista[]) {
