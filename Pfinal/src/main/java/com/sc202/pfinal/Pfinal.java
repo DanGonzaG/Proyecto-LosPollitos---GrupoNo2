@@ -66,6 +66,7 @@ public class Pfinal {
 
                 case 2:
                     JOptionPane.showConfirmDialog(null, "Módulo Ingresa Mercadería");
+                    ingresaMercaderia(Inventario);
                     break;
 
                 case 3:
@@ -249,7 +250,7 @@ public class Pfinal {
             }
         }
         while (pr == false) {
-            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digete el codigo del producto que desea cambiar" + mensaje, "EDITAR PRECIO", 3));
+            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digete el codigo del producto que desea cambiar\n" + mensaje, "EDITAR PRECIO", 3));
             for (int i = 0; i < lista.length; i++) {
                 if (id == lista[i].getIdProducto()) {
                     pr = true;
@@ -259,6 +260,32 @@ public class Pfinal {
                 }
             }
             if (pr == false) {
+                JOptionPane.showMessageDialog(null, "El codigo no coincide", "ERROR", 0);
+            }
+        }
+        return lista;
+    }
+    
+    public static Producto[] ingresaMercaderia(Producto lista[]) {
+        boolean mr = false;
+        String mensaje = "";
+        int id = 0;
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                mensaje = mensaje + lista[i].getIdProducto() + " " + lista[i].getNombreProducto() + "\n";
+            }
+        }
+        while (mr == false) {
+            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digete el codigo del producto que desea cambiar\n" + mensaje, "INGRESAR MERCADERIA", 3));
+            for (int i = 0; i < lista.length; i++) {
+                if (id == lista[i].getIdProducto()) {
+                    mr = true;
+                    lista[i].setCantProducto(Integer.parseInt(JOptionPane.showInputDialog(null, "Cuanta mercaderia desea agregar", "INGRESAR MERCADERIA", 3)));
+                    JOptionPane.showMessageDialog(null, "Mercaderia agregada con exito", "INGRESAR MERCADERIA", 1);
+                    break;
+                }
+            }
+            if (mr == false) {
                 JOptionPane.showMessageDialog(null, "El codigo no coincide", "ERROR", 0);
             }
         }
