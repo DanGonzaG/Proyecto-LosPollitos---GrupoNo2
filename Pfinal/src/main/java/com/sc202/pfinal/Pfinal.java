@@ -44,7 +44,7 @@ public class Pfinal {
                             case 1:
                                 JOptionPane.showMessageDialog(null, "Registrar una categoría");
                                 llenarCategoria(ListaCategoria);
-                                mostrarCategoria(ListaCategoria);                               
+                                mostrarCategoria(ListaCategoria);
                                 break;
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Registrar una marca");
@@ -52,7 +52,7 @@ public class Pfinal {
                                 mostrarMarca(ListaMarca);
                                 break;
                             case 3:
-                                 JOptionPane.showMessageDialog(null, "Para registrar un producto:\nPrimero asigne la categoria\nSegundo asigne la marca\n"
+                                JOptionPane.showMessageDialog(null, "Para registrar un producto:\nPrimero asigne la categoria\nSegundo asigne la marca\n"
                                         + "Ternero asigne el producto", "Registro de productos", 2);//Explica al usuario los pasos para crear un producto nuevo 
                                 CrearProductos(CrearProductoCategoria(ListaCategoria), CrearProductoMarca(ListaMarca), Inventario);
                                 break;
@@ -70,6 +70,7 @@ public class Pfinal {
 
                 case 3:
                     JOptionPane.showConfirmDialog(null, "Módulo Editar precio");
+                    editarPrecio(Inventario);
                     break;
 
                 case 4:
@@ -83,7 +84,7 @@ public class Pfinal {
                     break;
             }
         }
-       
+
     }
 
     public static Categoria[] llenarCategoria(Categoria lista[]) {
@@ -236,5 +237,31 @@ public class Pfinal {
             }
         }
         JOptionPane.showMessageDialog(null, mensaje, "INVENTARIO", 1);
+    }
+
+    public static Producto[] editarPrecio(Producto lista[]) {
+        boolean pr = false;
+        String mensaje = "";
+        int id = 0;
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                mensaje = mensaje + lista[i].getIdProducto() + " " + lista[i].getNombreProducto() + "\n";
+            }
+        }
+        while (pr == false) {
+            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digete el codigo del producto que desea cambiar" + mensaje, "EDITAR PRECIO", 3));
+            for (int i = 0; i < lista.length; i++) {
+                if (id == lista[i].getIdProducto()) {
+                    pr = true;
+                    lista[i].setPrecioProducto(Integer.parseInt(JOptionPane.showInputDialog(null, "Cual es el nuevo precio del producto", "EDITAR PRECIO", 3)));
+                    JOptionPane.showMessageDialog(null, "Precio agregado con exito", "EDITAR PRECIO", 1);
+                    break;
+                }
+            }
+            if (pr == false) {
+                JOptionPane.showMessageDialog(null, "El codigo no coincide", "ERROR", 0);
+            }
+        }
+        return lista;
     }
 }
