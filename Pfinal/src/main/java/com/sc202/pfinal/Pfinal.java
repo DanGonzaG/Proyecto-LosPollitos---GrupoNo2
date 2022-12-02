@@ -14,7 +14,7 @@ public class Pfinal {
 
     public static void main(String[] args) {
 
-        categoria[]ListaCategoria = new categoria[2];
+        Categoria[]ListaCategoria = new Categoria[2];
 
         marca[] ListaMarca = new marca[2];
 
@@ -83,13 +83,13 @@ public class Pfinal {
     }
 
     
-    public static categoria[]llenarCategoria(categoria lista[]) {
+    public static Categoria[]llenarCategoria(Categoria lista[]) {
         
         boolean v1 = false;
         
         for (int i = 0; i< lista.length; i++){
             if(lista[i] == null) {
-               lista[i] = new categoria(); 
+               lista[i] = new Categoria(); 
                lista[i].setNomCategoria(JOptionPane.showInputDialog(null, "Nombre categoria", "REGRISTRO CATEGORIA", 1));
                v1 = true;
                i = lista.length;
@@ -105,7 +105,7 @@ public class Pfinal {
         return lista;
     }
     
-    public static void mostrarCategoria(categoria lista[]){
+    public static void mostrarCategoria(Categoria lista[]){
            String mensaje = "";
         
            for (int i = 0; i < lista.length; i++){
@@ -117,7 +117,7 @@ public class Pfinal {
         }
         JOptionPane.showMessageDialog(null, mensaje, "GATEGORIA REGISTRADA", 1);
     }
-}
+
 
 
     public static marca[] Llenar(marca lista[]) {

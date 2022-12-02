@@ -10,12 +10,12 @@ import javax.swing.JOptionPane;
  *
  * @author familia barquero alv
  */
-public class categoria {
+public class Categoria {
     
     private String NomCategoria ;
     private int IdCategoria ;
 
-    public categoria() {
+    public Categoria() {
         this.IdCategoria = (int)(Math.random()* 200 + 299);
     }
 
