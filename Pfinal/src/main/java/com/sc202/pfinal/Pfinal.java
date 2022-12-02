@@ -1,8 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
 package com.sc202.pfinal;
 
 import javax.swing.JOptionPane;
@@ -14,6 +9,7 @@ import javax.swing.JOptionPane;
 public class Pfinal {
 
     public static void main(String[] args) {
+        categoria[]ListaCategoria = new categoria[2];
         int continuar = 0;
         int opc0 = 0; //menú principal
         int opc1 = 0; // menú de registro
@@ -45,8 +41,9 @@ public class Pfinal {
                                 break;
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Registrar una categoría");
-                                categoria NuevaCategoria = new categoria();
-                                String almacen[] = NuevaCategoria.llenar();
+                                llenarCategoria(ListaCategoria);
+                                mostrarCategoria(ListaCategoria);
+                                
                                 break;
                             case 4:
                                 opc1 = 4;
@@ -73,5 +70,40 @@ public class Pfinal {
             }
         }
         System.out.println("Hello World!");
+    }
+    
+    public static categoria[]llenarCategoria(categoria lista[]) {
+        
+        boolean v1 = false;
+        
+        for (int i = 0; i< lista.length; i++){
+            if(lista[i] == null) {
+               lista[i] = new categoria(); 
+               lista[i].setNomCategoria(JOptionPane.showInputDialog(null, "Nombre categoria", "REGRISTRO CATEGORIA", 1));
+               v1 = true;
+               i = lista.length;
+            }   
+        }
+        if (v1 == false){
+            JOptionPane.showMessageDialog(null, "NO HAY MAS ESPACIO", "ERROR", 2);
+            
+        }
+        else if (v1 ==false){
+            JOptionPane.showMessageDialog(null, "YA NO HAY ESPACIO PARA REGISTRAR NUEVAS CATEGORIAS", "ERROR", 0);
+        }
+        return lista;
+    }
+    
+    public static void mostrarCategoria(categoria lista[]){
+           String mensaje = "";
+        
+           for (int i = 0; i < lista.length; i++){
+               if (lista[i] != null); {
+               
+               mensaje = mensaje + lista[i].getIdCategoria()+" "+lista[i].getNomCategoria()+ "\n";
+           }
+            
+        }
+        JOptionPane.showMessageDialog(null, mensaje, "GATEGORIA REGISTRADA", 1);
     }
 }
