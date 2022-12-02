@@ -9,12 +9,12 @@ package com.sc202.pfinal;
  *
  * @author XPC
  */
-class marca {
+class Marca {
 
     private String MarcaNombre;
     private int IdMarca;
 
-    public marca() {
+    public Marca() {
         IdMarca = (int) (Math.random() * 100 + 99);
     }
 
