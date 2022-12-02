@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+ */
 package com.sc202.pfinal;
 
 import javax.swing.JOptionPane;
@@ -9,7 +13,11 @@ import javax.swing.JOptionPane;
 public class Pfinal {
 
     public static void main(String[] args) {
+
         categoria[]ListaCategoria = new categoria[2];
+
+        marca[] ListaMarca = new marca[2];
+
         int continuar = 0;
         int opc0 = 0; //menú principal
         int opc1 = 0; // menú de registro
@@ -38,6 +46,8 @@ public class Pfinal {
                                 break;
                             case 2:
                                 JOptionPane.showMessageDialog(null, "Registrar una marca");
+                                Llenar(ListaMarca);
+                                mostrar(ListaMarca);
                                 break;
                             case 3:
                                 JOptionPane.showMessageDialog(null, "Registrar una categoría");
@@ -71,6 +81,7 @@ public class Pfinal {
         }
         System.out.println("Hello World!");
     }
+
     
     public static categoria[]llenarCategoria(categoria lista[]) {
         
@@ -107,3 +118,34 @@ public class Pfinal {
         JOptionPane.showMessageDialog(null, mensaje, "GATEGORIA REGISTRADA", 1);
     }
 }
+
+
+    public static marca[] Llenar(marca lista[]) {
+        boolean v2 = false;
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] == null) {
+                lista[i] = new marca();
+                lista[i].setMarcaNombre(JOptionPane.showInputDialog(null, "Digite la nueva marca que desea registrar: ", "REGISTRO MARCA", 1));
+                v2 = true;
+                i = lista.length;
+            }
+        }
+        if (v2 == true) {
+            JOptionPane.showMessageDialog(null, "Marca registrada exitosamente", "REGISTRO MARCA", 1);
+        } else if (v2 == false) {
+            JOptionPane.showMessageDialog(null, "Ya no hay espacio para registrar mas marcas", "ERROR", 0);
+        }
+        return lista;
+    }
+
+    public static void mostrar(marca lista[]) {
+        String mensaje = "";
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                mensaje = mensaje + lista[i].getIdMarca() + "  " + lista[i].getMarcaNombre() + "\n";
+            }
+        }
+        JOptionPane.showMessageDialog(null, mensaje, "MARCA REGISTRADA", 1);
+    }
+}
+

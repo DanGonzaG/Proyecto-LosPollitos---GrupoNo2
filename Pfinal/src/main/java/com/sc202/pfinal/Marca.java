@@ -4,10 +4,30 @@
  */
 package com.sc202.pfinal;
 
+//import javax.swing.JOptionPane;
 /**
  *
  * @author XPC
  */
-public class Marca {
-    
+class marca {
+
+    private String MarcaNombre;
+    private int IdMarca;
+
+    public marca() {
+        IdMarca = (int) (Math.random() * 100 + 99);
+    }
+
+    public int getIdMarca() {
+        return IdMarca;
+    }
+
+    public String getMarcaNombre() {
+        return MarcaNombre;
+    }
+
+    public void setMarcaNombre(String MarcaNombre) {
+        this.MarcaNombre = MarcaNombre;
+    }
+
 }
