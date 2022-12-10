@@ -32,41 +32,37 @@ public class Pfinal {
         int producto = 0; //menú productos
 
         while (opc0 != 5) {
-            opc0 = Integer.parseInt(JOptionPane.showInputDialog("Seleccione una opcion del menú"
-                    + "\n1 Módulo Registro o Modificación"
+            opc0 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione una opcion del menú"
+                    + "\n1 Módulo Registro / Modificación"
                     + "\n2 Módulo Ingresar Mercadería Nueva"
                     + "\n3 Módulo Editar Precio"
                     + "\n4 Módulo Ver Invetario"
-                    + "\n5 Salir"));
+                    + "\n5 Salir", "Menú Principal", -1));
             switch (opc0) {
                 case 1:
                     opc1 = 0;
                     while (opc1 != 4) {
-                        opc1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Módulo Registro"
-                                + "\nSelecciones una opción de menú"
+                        opc1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione una opción de menú"
                                 + "\n1 Categorias"
                                 + "\n2 Marcas"
                                 + "\n3 Productos"
-                                + "\n4 Regresar"));
+                                + "\n4 Regresar", "REGISTRO Y MODIFICACION", -1));
                         switch (opc1) {
                             case 1:
                                 categoria = 0;
                                 while (categoria != 4) {
-                                    categoria = Integer.parseInt(JOptionPane.showInputDialog(null, "Categorias"
-                                            + "\nSelecciones una opción de menú"
+                                    categoria = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
                                             + "\n1 Registrar categorias"
                                             + "\n2 Modificar una categoría"
                                             + "\n3 Mostrar Categorias registradas"
-                                            + "\n4 Regresar"));
+                                            + "\n4 Regresar", "CATEGORIAS", -1));
                                     switch (categoria) {
-                                        case 1:
-                                            JOptionPane.showMessageDialog(null, "Registrar una categoría");
+                                        case 1:                                            
                                             llenarCategoria(ListaCategoria);
                                             categoriaNueva = true;
                                             break;
                                         case 2:
-                                            if (categoriaNueva == true) {
-                                                JOptionPane.showMessageDialog(null, "Modificación de categorias existentes");
+                                            if (categoriaNueva == true) {                                               
                                                 TempoActual = modificarCategoria1(ListaCategoria);
                                                 TempoNuevo = modificarCategoria2(ListaCategoria, TempoActual);
                                                 modificarCategoria3(TempoActual, TempoNuevo, ListaCategoria);
@@ -93,21 +89,18 @@ public class Pfinal {
                             case 2:
                                 marca = 0;
                                 while (marca != 4) {
-                                    marca = Integer.parseInt(JOptionPane.showInputDialog(null, "Marcas"
-                                            + "\nSelecciones una opción de menú"
+                                    marca = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
                                             + "\n1 Registrar Marcas"
                                             + "\n2 Modificar una Marca"
                                             + "\n3 Mostrar Marcas Registradas"
-                                            + "\n4 Regresar"));
+                                            + "\n4 Regresar", "MARCAS", -1));
                                     switch (marca) {
                                         case 1:
-                                            JOptionPane.showMessageDialog(null, "Registrar una Marca");
                                             LlenarMarca(ListaMarca);
                                             marcaNueva = true;
                                             break;
                                         case 2:
-                                            if (marcaNueva == true) {
-                                                JOptionPane.showMessageDialog(null, "Modificación de marcas existentes");
+                                            if (marcaNueva == true) {                                                
                                                 TempoActual = modificarMarca1(ListaMarca);
                                                 TempoNuevo = modificarMarca2(ListaMarca, TempoActual);
                                                 modificarMarca3(TempoActual, TempoNuevo, ListaMarca);
@@ -135,12 +128,11 @@ public class Pfinal {
 
                                 producto = 0;
                                 while (producto != 4) {
-                                    producto = Integer.parseInt(JOptionPane.showInputDialog(null, "Marcas"
-                                            + "\nSelecciones una opción de menú"
+                                    producto = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
                                             + "\n1 Registrar Productos"
                                             + "\n2 Modificar un Producto"
                                             + "\n3 Mostrar Productos Registrados"
-                                            + "\n4 Regresar"));
+                                            + "\n4 Regresar", "PRODUCTOS"));
                                     switch (producto) {
                                         case 1:
                                             if (categoriaNueva == false && marcaNueva == false){
@@ -182,21 +174,15 @@ public class Pfinal {
                     }
                     break;
 
-                case 2:
-                    JOptionPane.showConfirmDialog(null, "Módulo Ingresa Mercadería");
+                case 2:                    
                     ingresaMercaderia(Inventario);
                     break;
-
-                case 3:
-                    JOptionPane.showConfirmDialog(null, "Módulo Editar precio");
+                case 3:                    
                     editarPrecio(Inventario);
                     break;
-
-                case 4:
-                    JOptionPane.showConfirmDialog(null, "Módulo Ver inventario completo");
+                case 4:                   
                     mostrarInventario(Inventario);
                     break;
-
                 case 5:
                     opc0 = 5;
                     break;
@@ -531,6 +517,7 @@ public class Pfinal {
     
     
 
+   /*---------------------------------------------------------METODO MOSTRAR INVENTARIO COMPLETO-----------------------------------------------------------------------------------------------*/
     //Métoo para mostar el inventario completo
     public static void mostrarInventario(Producto lista[]) {
         String mensaje = "INVENTARIO\n";
@@ -543,6 +530,9 @@ public class Pfinal {
         JOptionPane.showMessageDialog(null, mensaje, "INVENTARIO", 1);
     }
 
+    
+     /*---------------------------------------------------------METODOS PARA EDITAR PRECIO-----------------------------------------------------------------------------------------------*/
+    
     public static Producto[] editarPrecio(Producto lista[]) {
         boolean pr = false;
         String mensaje = "";
@@ -569,6 +559,9 @@ public class Pfinal {
         return lista;
     }
 
+    
+     /*---------------------------------------------------------METODOS PARA INGRESAR MERCADERIA----------------------------------------------------------------------------------------------*/
+    
     public static Producto[] ingresaMercaderia(Producto lista[]) {
         boolean mr = false;
         String mensaje = "";
