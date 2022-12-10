@@ -69,6 +69,8 @@ public class Producto {
         this.NombreMarca = NombreMarca;
     }
 
-    
+    public String toString (){
+        return "Código "+idProducto+" nombre "+NombreProducto;
+    }
     
 }
