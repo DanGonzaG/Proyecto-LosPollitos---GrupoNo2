@@ -18,76 +18,182 @@ public class Pfinal {
         Marca[] ListaMarca = new Marca[2];
         Producto[] Inventario = new Producto[2];
 
+        String TempoActual;
+        String TempoNuevo;
+
+        boolean categoriaNueva = false;
+        boolean marcaNueva = false;
+
         int continuar = 0;
         int opc0 = 0; //menú principal
         int opc1 = 0; // menú de registro
+        int categoria = 0;//menú categorias
+        int marca = 0;//menú marcas
+        int producto = 0; //menú productos
 
         while (opc0 != 5) {
-            opc0 = Integer.parseInt(JOptionPane.showInputDialog("Seleccione una opcion del menú"
-                    + "\n1 Módulo Registro"
+            opc0 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione una opcion del menú"
+                    + "\n1 Módulo Registro / Modificación"
                     + "\n2 Módulo Ingresar Mercadería Nueva"
                     + "\n3 Módulo Editar Precio"
                     + "\n4 Módulo Ver Invetario"
-                    + "\n5 Salir"));
-
+                    + "\n5 Salir", "Menú Principal", -1));
             switch (opc0) {
                 case 1:
                     opc1 = 0;
                     while (opc1 != 4) {
-                        opc1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Módulo Registro"
-                                + "\nSelecciones una opción de menú"
-                                + "\n1 Registrar una categorias"
-                                + "\n2 Registrar una marca"
-                                + "\n3 Registrar un productos"
-                                + "\n4 Regresar"));
+                        opc1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione una opción de menú"
+                                + "\n1 Categorias"
+                                + "\n2 Marcas"
+                                + "\n3 Productos"
+                                + "\n4 Regresar", "REGISTRO Y MODIFICACION", -1));
                         switch (opc1) {
                             case 1:
-                                JOptionPane.showMessageDialog(null, "Registrar una categoría");
-                                llenarCategoria(ListaCategoria);
-                                mostrarCategoria(ListaCategoria);
+                                categoria = 0;
+                                while (categoria != 4) {
+                                    categoria = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
+                                            + "\n1 Registrar categorias"
+                                            + "\n2 Modificar una categoría"
+                                            + "\n3 Mostrar Categorias registradas"
+                                            + "\n4 Regresar", "CATEGORIAS", -1));
+                                    switch (categoria) {
+                                        case 1:                                            
+                                            llenarCategoria(ListaCategoria);
+                                            categoriaNueva = true;
+                                            break;
+                                        case 2:
+                                            if (categoriaNueva == true) {                                               
+                                                TempoActual = modificarCategoria1(ListaCategoria);
+                                                TempoNuevo = modificarCategoria2(ListaCategoria, TempoActual);
+                                                modificarCategoria3(TempoActual, TempoNuevo, ListaCategoria);
+                                                modificarCategoria4(TempoActual, TempoNuevo, Inventario);
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Primero debe de crear categorias", "ERROR", 0);
+                                            }
+                                            break;
+                                        case 3:
+                                            if (categoriaNueva == true) {
+                                                mostrarCategoria(ListaCategoria);
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Primero debe de crear categorias", "ERROR", 0);
+                                            }
+                                            break;
+                                        case 4:
+                                            categoria = 4;
+                                            break;
+                                        default:
+                                            JOptionPane.showMessageDialog(null, "Opción incorrecta", "ERROR", 0);
+                                    }
+                                }
                                 break;
                             case 2:
-                                JOptionPane.showMessageDialog(null, "Registrar una marca");
-                                LlenarMarca(ListaMarca);
-                                mostrarMarca(ListaMarca);
+                                marca = 0;
+                                while (marca != 4) {
+                                    marca = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
+                                            + "\n1 Registrar Marcas"
+                                            + "\n2 Modificar una Marca"
+                                            + "\n3 Mostrar Marcas Registradas"
+                                            + "\n4 Regresar", "MARCAS", -1));
+                                    switch (marca) {
+                                        case 1:
+                                            LlenarMarca(ListaMarca);
+                                            marcaNueva = true;
+                                            break;
+                                        case 2:
+                                            if (marcaNueva == true) {                                                
+                                                TempoActual = modificarMarca1(ListaMarca);
+                                                TempoNuevo = modificarMarca2(ListaMarca, TempoActual);
+                                                modificarMarca3(TempoActual, TempoNuevo, ListaMarca);
+                                                modificarMarca4(TempoActual, TempoNuevo, Inventario);
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Primero debe de crear marcas", "ERROR", 0);
+                                            }
+                                            break;
+                                        case 3:
+                                            if (marcaNueva == true) {
+                                                mostrarMarca(ListaMarca);
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Primero debe de crear marcas", "ERROR", 0);
+                                            }
+                                            break;
+                                        case 4:
+                                            marca = 4;
+                                            break;
+                                        default:
+                                            JOptionPane.showMessageDialog(null, "Opción incorrecta", "ERROR", 0);
+                                    }
+                                }
                                 break;
                             case 3:
-                                JOptionPane.showMessageDialog(null, "Para registrar un producto:\nPrimero asigne la categoria\nSegundo asigne la marca\n"
-                                        + "Ternero asigne el producto", "Registro de productos", 2);//Explica al usuario los pasos para crear un producto nuevo 
-                                CrearProductos(CrearProductoCategoria(ListaCategoria), CrearProductoMarca(ListaMarca), Inventario);
+
+                                producto = 0;
+                                while (producto != 4) {
+                                    producto = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
+                                            + "\n1 Registrar Productos"
+                                            + "\n2 Modificar un Producto"
+                                            + "\n3 Mostrar Productos Registrados"
+                                            + "\n4 Regresar", "PRODUCTOS"));
+                                    switch (producto) {
+                                        case 1:
+                                            if (categoriaNueva == false && marcaNueva == false){
+                                                JOptionPane.showMessageDialog(null, "Antes de agregar un producto debe crear categorias y marcas", "INFORMACION FALTANTE", 2);
+                                            } else if (categoriaNueva == false && marcaNueva == true){
+                                                JOptionPane.showMessageDialog(null, "Falta crear Categorias", "INFORMACION FALTANTE", 2);
+                                            } else if (categoriaNueva == true && marcaNueva == false){
+                                                JOptionPane.showMessageDialog(null, "Falta crear Marcas", "INFORMACION FALTANTE", 2);
+                                            }else if(categoriaNueva == true && marcaNueva == true){
+                                                JOptionPane.showMessageDialog(null, "Para registrar un producto:\nPrimero asigne la categoria\nSegundo asigne la marca\n"
+                                                    + "Tercero asigne el producto", "Registro de productos", 2);//Explica al usuario los pasos para crear un producto nuevo 
+                                            CrearProductos(CrearProductoCategoria(ListaCategoria), CrearProductoMarca(ListaMarca), Inventario);
+                                            }else{
+                                                JOptionPane.showMessageDialog(null, "Opción incorrecta", "ERROR", 0);
+                                            }
+                                            break;
+                                        case 2:
+                                            modificarProductos(Inventario);
+                                            break;
+                                        case 3:
+                                            mostarProductos (Inventario);
+                                            break;
+                                        case 4:
+                                            producto = 4;
+                                            break;
+                                        default:
+                                            JOptionPane.showMessageDialog(null, "Opción incorrecta", "ERROR", 0);
+                                    }
+                                }
                                 break;
+
                             case 4:
                                 opc1 = 4;
                                 break;
                             default:
+
                                 JOptionPane.showMessageDialog(null, "Opción incorrecta", "ERROR", 0);
                         }
                     }
+                    break;
 
-                case 2:
-                    JOptionPane.showConfirmDialog(null, "Módulo Ingresa Mercadería");
+                case 2:                    
                     ingresaMercaderia(Inventario);
                     break;
-
-                case 3:
-                    JOptionPane.showConfirmDialog(null, "Módulo Editar precio");
+                case 3:                    
                     editarPrecio(Inventario);
                     break;
-
-                case 4:
-                    JOptionPane.showConfirmDialog(null, "Módulo Ver inventario completo");
+                case 4:                   
                     mostrarInventario(Inventario);
                     break;
-
                 case 5:
                     opc0 = 5;
-                    //JOptionPane.showConfirmDialog(null, "Salir");
                     break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opción incorrecta", "ERROR", 0);
             }
         }
 
     }
 
+    /*---------------------------------------------------------METODOS PARA CATEGORIA-----------------------------------------------------------------------------------------------*/
     public static Categoria[] llenarCategoria(Categoria lista[]) {
 
         boolean v1 = false;
@@ -109,6 +215,76 @@ public class Pfinal {
         return lista;
     }
 
+    public static String modificarCategoria1(Categoria lista[]) {//retorna la categoria actual 
+        int cont = 0;
+        String tempoViejo = null;
+        int codCate = 0;
+        String mensaje = "";
+
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                mensaje = mensaje + lista[i].getIdCategoria() + " " + lista[i].getNomCategoria() + "\n";
+            }
+        }
+
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] == null) {
+                cont++;
+                if (cont == lista.length) {
+                    JOptionPane.showMessageDialog(null, "La lista de categorias está vácia, primero debe de crear categorias", "ERROR", 0);
+                } else {
+                    codCate = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la categoria a módificar\n" + mensaje, "Modificación de Categoria", -1));
+                }
+
+                for (int j = 0; j < lista.length; j++) {
+                    if (codCate == lista[j].getIdCategoria()) {
+                        tempoViejo = lista[j].getNomCategoria();
+                        break;
+                    }
+                }
+            }
+        }
+        return tempoViejo;
+    }
+
+    public static String modificarCategoria2(Categoria lista[], String texto) {
+        String tempoNuevo = null;
+        for (int j = 0; j < lista.length; j++) {
+            if (texto.equalsIgnoreCase(lista[j].getNomCategoria())) {
+                lista[j].setNomCategoria(JOptionPane.showInputDialog(null, lista[j].getNomCategoria() + " es el nombre actual de la categoria con el código "
+                        + lista[j].getIdCategoria() + "\n¿Cual es el nombre a asignar?", "Modificación de Categoria", 3));
+                tempoNuevo = lista[j].getNomCategoria();
+                break;
+            }
+        }
+        return tempoNuevo;
+    }
+
+    public static Categoria[] modificarCategoria3(String tempoActual, String tempoNuevo, Categoria lista[]) { //modifica el arreglo categoria
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                if (tempoActual.equalsIgnoreCase(lista[i].getNomCategoria())) {
+                    lista[i].setNomCategoria(tempoNuevo);
+                }
+            }
+
+        }
+        return lista;
+    }
+
+    //Método que módifica el arreglo producto de manera simultanea
+    public static Producto[] modificarCategoria4(String tempoActual, String tempoNuevo, Producto lista[]) {
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                if (tempoActual.equals(lista[i].getNombreCategoria())) {
+                    lista[i].setNombreCategoria(tempoNuevo);
+                }
+            }
+
+        }
+        return lista;
+    }
+
     public static void mostrarCategoria(Categoria lista[]) {
         String mensaje = "";
 
@@ -121,6 +297,7 @@ public class Pfinal {
         JOptionPane.showMessageDialog(null, mensaje, "CATEGORIA REGISTRADA", 1);
     }
 
+    /*---------------------------------------------------------METODOS PARA MARCA-----------------------------------------------------------------------------------------------*/
     public static Marca[] LlenarMarca(Marca lista[]) {
         boolean v2 = false;
         for (int i = 0; i < lista.length; i++) {
@@ -139,6 +316,75 @@ public class Pfinal {
         return lista;
     }
 
+    public static String modificarMarca1(Marca lista[]) {//retorna la marca actual que esta en el arreglo 
+        int cont = 0;
+        String tempoViejo = null;
+        int codMarca = 0;
+        String mensaje = "";
+
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                mensaje = mensaje + lista[i].getIdMarca() + " " + lista[i].getMarcaNombre() + "\n";
+            }
+        }
+
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] == null) {
+                cont++;
+                if (cont == lista.length) {
+                    JOptionPane.showMessageDialog(null, "La lista de marcas está vácia, primero debe de crear marcas", "ERROR", 0);
+                } else {
+                    codMarca = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la marca a módificar\n" + mensaje, "Modificación de Marcas", -1));
+                }
+
+                for (int j = 0; j < lista.length; j++) {
+                    if (codMarca == lista[j].getIdMarca()) {
+                        tempoViejo = lista[j].getMarcaNombre();
+                        break;
+                    }
+                }
+            }
+        }
+        return tempoViejo;
+    }
+
+    public static String modificarMarca2(Marca lista[], String texto) { //retorna la marca nueva a variable en main
+        String tempoNuevo = null;
+        for (int j = 0; j < lista.length; j++) {
+            if (texto.equalsIgnoreCase(lista[j].getMarcaNombre())) {
+                lista[j].setMarcaNombre(JOptionPane.showInputDialog(null, lista[j].getMarcaNombre() + " es el nombre actual de la categoria con el código "
+                        + lista[j].getIdMarca() + "\n¿Cual es el nombre a asignar?", "Modificación de Categoria", 3));
+                tempoNuevo = lista[j].getMarcaNombre();
+                break;
+            }
+        }
+        return tempoNuevo;
+    }
+
+    public static Marca[] modificarMarca3(String tempoActual, String tempoNuevo, Marca lista[]) { //modifica el arreglo categoria
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                if (tempoActual.equalsIgnoreCase(lista[i].getMarcaNombre())) {
+                    lista[i].setMarcaNombre(tempoNuevo);
+                }
+            }
+
+        }
+        return lista;
+    }
+
+    public static Producto[] modificarMarca4(String tempoActual, String tempoNuevo, Producto lista[]) {//modifica todas las marcas en el arreglo producto
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i] != null) {
+                if (tempoActual.equals(lista[i].getNombreMarca())) {
+                    lista[i].setNombreMarca(tempoNuevo);
+                }
+            }
+
+        }
+        return lista;
+    }
+
     public static void mostrarMarca(Marca lista[]) {
         String mensaje = "";
         for (int i = 0; i < lista.length; i++) {
@@ -149,6 +395,7 @@ public class Pfinal {
         JOptionPane.showMessageDialog(null, mensaje, "MARCA REGISTRADA", 1);
     }
 
+    /*---------------------------------------------------------METODOS PARA PRODUCTOS-----------------------------------------------------------------------------------------------*/
     //Se usa para asignar las categorias en el arreglo Producto
     public static String CrearProductoCategoria(Categoria lista[]) {
         String Tempo = "";
@@ -227,7 +474,50 @@ public class Pfinal {
         }
         return lista;
     }
+    
+    public static void mostarProductos (Producto lista[]){
+        String mensaje = "";
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i]!=null){
+                mensaje = mensaje + lista[i].toString();
+            }
+            
+        }
+        JOptionPane.showMessageDialog(null, mensaje, "PRODUCTOS REGISTRADOS", 1);
+    }
+    
+    
+    public static Producto[] modificarProductos (Producto lista[]){
+        boolean v1 = false;
+        int codProducto = 0;
+         String mensaje = "";
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i]!=null){
+                mensaje = mensaje + lista[i].toString();
+            }            
+        }
+        codProducto = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código del producto a módificar\n" + mensaje, "Modificación de Producto", -1));
+        for (int i = 0; i < lista.length; i++) {
+            if (lista[i].getIdProducto()==codProducto){
+                lista[i].setNombreProducto(JOptionPane.showInputDialog(null, "El nombre actual del producto es"+lista[i].getNombreProducto()+
+                        ", ¿Por cual desea cambiarlo?", "MODIFICAR PRODUCTO", 3));
+                v1 = true;
+                break;
+                        
+                
+            }            
+        }
+        if (v1 == true){
+                JOptionPane.showMessageDialog(null, "Producto modificado con éxito", "MODIFICACIÓN DE PRODUCTOS", 1);
+        } else{
+            JOptionPane.showMessageDialog(null, "No se modifico el producto", "ERROR", 0);
+        }
+        
+    return lista;}
+    
+    
 
+   /*---------------------------------------------------------METODO MOSTRAR INVENTARIO COMPLETO-----------------------------------------------------------------------------------------------*/
     //Métoo para mostar el inventario completo
     public static void mostrarInventario(Producto lista[]) {
         String mensaje = "INVENTARIO\n";
@@ -240,6 +530,9 @@ public class Pfinal {
         JOptionPane.showMessageDialog(null, mensaje, "INVENTARIO", 1);
     }
 
+    
+     /*---------------------------------------------------------METODOS PARA EDITAR PRECIO-----------------------------------------------------------------------------------------------*/
+    
     public static Producto[] editarPrecio(Producto lista[]) {
         boolean pr = false;
         String mensaje = "";
@@ -265,6 +558,9 @@ public class Pfinal {
         }
         return lista;
     }
+
+    
+     /*---------------------------------------------------------METODOS PARA INGRESAR MERCADERIA----------------------------------------------------------------------------------------------*/
     
     public static Producto[] ingresaMercaderia(Producto lista[]) {
         boolean mr = false;

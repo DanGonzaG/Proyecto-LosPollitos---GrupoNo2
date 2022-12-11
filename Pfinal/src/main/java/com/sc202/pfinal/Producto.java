@@ -14,44 +14,12 @@ public class Producto {
     private String NombreCategoria;
     private String NombreMarca;
     private int cantProducto;
-    private int PrecioProducto;
-    private Categoria categoria;
+    private int PrecioProducto;   
     
     public Producto (){
         idProducto = (int) (Math.random()*300+399);
     }
-    
-
-    /*public  llenar() {
-        int salir = 2;
-        int fila = 0;
-        int col = 0;
-        String lista[][] = new String[5][5];
-        while (salir == 2) {
-            lista[fila][col] = JOptionPane.showInputDialog("Digite el nombre del producto");
-            salir = Integer.parseInt(JOptionPane.showInputDialog("Digite 1 para salir o 2 para continuar"));
-            fila++;
-        }
-        return lista;
-    }*/
-
-    /*public Producto(String categoria[]) {
-        String listaCategoria = "LISTA DE CATEGORIAS";
-        for (int i = 0; i < categoria.length; i++) {
-            listaCategoria = listaCategoria + categoria[i] + "\n";
-        }
-        JOptionPane.showMessageDialog(null, listaCategoria);
-    }*/
-
-    /*public String [][] llenar2 (){
-        String lista[][] = new String[2][2];
-        for(int x = 0; x < 2; x++){
-            for(int y = 0; y < 2; y++){
-                lista[x][y] = JOptionPane.showInputDialog("Digite el nombre del producto");
-            }
-        }
-    return lista;
-    }*/
+       
 
     public String getNombreProducto() {
         return NombreProducto;
@@ -101,12 +69,8 @@ public class Producto {
         this.NombreMarca = NombreMarca;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public String toString (){
+        return "Código "+idProducto+" nombre "+NombreProducto;
     }
     
 }

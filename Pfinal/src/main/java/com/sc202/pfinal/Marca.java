@@ -17,7 +17,7 @@ class Marca {
     public Marca() {
         IdMarca = (int) (Math.random() * 100 + 99);
     }
-
+    
     public int getIdMarca() {
         return IdMarca;
     }
