@@ -23,6 +23,9 @@ public class Pfinal {
 
         boolean categoriaNueva = false;
         boolean marcaNueva = false;
+        boolean nuevoProducto = false;
+                
+              
 
         int continuar = 0;
         int opc0 = 0; //menú principal
@@ -132,7 +135,7 @@ public class Pfinal {
                                             + "\n1 Registrar Productos"
                                             + "\n2 Modificar un Producto"
                                             + "\n3 Mostrar Productos Registrados"
-                                            + "\n4 Regresar", "PRODUCTOS"));
+                                            + "\n4 Regresar", "PRODUCTOS", -1));
                                     switch (producto) {
                                         case 1:
                                             if (categoriaNueva == false && marcaNueva == false){
@@ -145,15 +148,24 @@ public class Pfinal {
                                                 JOptionPane.showMessageDialog(null, "Para registrar un producto:\nPrimero asigne la categoria\nSegundo asigne la marca\n"
                                                     + "Tercero asigne el producto", "Registro de productos", 2);//Explica al usuario los pasos para crear un producto nuevo 
                                             CrearProductos(CrearProductoCategoria(ListaCategoria), CrearProductoMarca(ListaMarca), Inventario);
+                                            nuevoProducto = true;
                                             }else{
                                                 JOptionPane.showMessageDialog(null, "Opción incorrecta", "ERROR", 0);
                                             }
                                             break;
                                         case 2:
-                                            modificarProductos(Inventario);
+                                            if (nuevoProducto == true){ 
+                                                modificarProductos(Inventario);                                           
+                                            }else{
+                                                JOptionPane.showMessageDialog(null, "Falta crear Productos", "INFORMACION FALTANTE", 2);
+                                            }
                                             break;
                                         case 3:
-                                            mostarProductos (Inventario);
+                                             if (nuevoProducto == true){
+                                                 mostarProductos (Inventario);
+                                            }else{
+                                                 JOptionPane.showMessageDialog(null, "Falta crear Productos", "INFORMACION FALTANTE", 2);
+                                            }
                                             break;
                                         case 4:
                                             producto = 4;
@@ -174,14 +186,26 @@ public class Pfinal {
                     }
                     break;
 
-                case 2:                    
+                case 2:
+                    if (nuevoProducto == true){                    
                     ingresaMercaderia(Inventario);
+                    } else {
+                         JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
+                    }
                     break;
-                case 3:                    
-                    editarPrecio(Inventario);
+                case 3:
+                    if (nuevoProducto == true){
+                        editarPrecio(Inventario);
+                    }else {
+                         JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
+                    }
                     break;
-                case 4:                   
-                    mostrarInventario(Inventario);
+                case 4:
+                    if (nuevoProducto == true){
+                        mostrarInventario(Inventario);
+                    }else {
+                         JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
+                    }
                     break;
                 case 5:
                     opc0 = 5;
