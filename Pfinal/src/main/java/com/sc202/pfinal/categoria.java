@@ -16,7 +16,7 @@ public class Categoria {
     private int IdCategoria ;
 
     public Categoria() {
-        this.IdCategoria = (int)(Math.random()* 200 + 299);
+        this.IdCategoria = (int)(Math.random()* 200) + 100;
     }
 
     public String getNomCategoria() {
