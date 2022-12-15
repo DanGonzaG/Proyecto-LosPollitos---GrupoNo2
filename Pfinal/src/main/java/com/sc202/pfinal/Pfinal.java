@@ -1,6 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
+/*El programa trabaja por medio de tres arreglos en uno se almecenan los datos del objeto categoria, otro los datos de marca y el último los datos de producto.
+Los arreglos de marca y categoria esta relacionados con el arreglo producto por lo que cualquien modificación del cualquiera de los anteriores tambien será cambiado en 
+arreglo producto.
  */
 package com.sc202.pfinal;
 
@@ -14,18 +14,21 @@ public class Pfinal {
 
     public static void main(String[] args) {
 
+        /*Se crean los tres arreglos de objetos*/
         Categoria[] ListaCategoria = new Categoria[2];
         Marca[] ListaMarca = new Marca[2];
         Producto[] Inventario = new Producto[2];
 
-        String TempoActual;
-        String TempoNuevo;
+        /*Variables que se usan para almacenar temporamente cualquien dato se modifique en el arreglo categoria y marca*/
+        String TempoActual = "";
+        String TempoNuevo = "";
 
+        /*Variables para validar que cuales métodos pueden ser llamados y cuales no*/
         boolean categoriaNueva = false;
+        boolean categoriaMod = false;
         boolean marcaNueva = false;
+        boolean marcaMod = false;
         boolean nuevoProducto = false;
-                
-              
 
         int continuar = 0;
         int opc0 = 0; //menú principal
@@ -60,16 +63,21 @@ public class Pfinal {
                                             + "\n3 Mostrar Categorias registradas"
                                             + "\n4 Regresar", "CATEGORIAS", -1));
                                     switch (categoria) {
-                                        case 1:                                            
+                                        case 1:
                                             llenarCategoria(ListaCategoria);
                                             categoriaNueva = true;
                                             break;
                                         case 2:
-                                            if (categoriaNueva == true) {                                               
+                                            if (categoriaNueva == true) {
                                                 TempoActual = modificarCategoria1(ListaCategoria);
-                                                TempoNuevo = modificarCategoria2(ListaCategoria, TempoActual);
-                                                modificarCategoria3(TempoActual, TempoNuevo, ListaCategoria);
-                                                modificarCategoria4(TempoActual, TempoNuevo, Inventario);
+                                                if (TempoActual != null) {
+                                                    TempoNuevo = modificarCategoria2(ListaCategoria, TempoActual);
+                                                    modificarCategoria3(TempoActual, TempoNuevo, ListaCategoria);
+                                                    if (nuevoProducto == true) {
+                                                        modificarCategoria4(TempoActual, TempoNuevo, Inventario);
+                                                    }
+                                                }
+
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "Primero debe de crear categorias", "ERROR", 0);
                                             }
@@ -103,11 +111,15 @@ public class Pfinal {
                                             marcaNueva = true;
                                             break;
                                         case 2:
-                                            if (marcaNueva == true) {                                                
+                                            if (marcaNueva == true) {
                                                 TempoActual = modificarMarca1(ListaMarca);
-                                                TempoNuevo = modificarMarca2(ListaMarca, TempoActual);
-                                                modificarMarca3(TempoActual, TempoNuevo, ListaMarca);
-                                                modificarMarca4(TempoActual, TempoNuevo, Inventario);
+                                                if (TempoActual != null) {
+                                                    TempoNuevo = modificarMarca2(ListaMarca, TempoActual);
+                                                    modificarMarca3(TempoActual, TempoNuevo, ListaMarca);
+                                                    if (nuevoProducto == true) {
+                                                        modificarMarca4(TempoActual, TempoNuevo, Inventario);
+                                                    }
+                                                }
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "Primero debe de crear marcas", "ERROR", 0);
                                             }
@@ -138,33 +150,33 @@ public class Pfinal {
                                             + "\n4 Regresar", "PRODUCTOS", -1));
                                     switch (producto) {
                                         case 1:
-                                            if (categoriaNueva == false && marcaNueva == false){
+                                            if (categoriaNueva == false && marcaNueva == false) {
                                                 JOptionPane.showMessageDialog(null, "Antes de agregar un producto debe crear categorias y marcas", "INFORMACION FALTANTE", 2);
-                                            } else if (categoriaNueva == false && marcaNueva == true){
+                                            } else if (categoriaNueva == false && marcaNueva == true) {
                                                 JOptionPane.showMessageDialog(null, "Falta crear Categorias", "INFORMACION FALTANTE", 2);
-                                            } else if (categoriaNueva == true && marcaNueva == false){
+                                            } else if (categoriaNueva == true && marcaNueva == false) {
                                                 JOptionPane.showMessageDialog(null, "Falta crear Marcas", "INFORMACION FALTANTE", 2);
-                                            }else if(categoriaNueva == true && marcaNueva == true){
+                                            } else if (categoriaNueva == true && marcaNueva == true) {
                                                 JOptionPane.showMessageDialog(null, "Para registrar un producto:\nPrimero asigne la categoria\nSegundo asigne la marca\n"
-                                                    + "Tercero asigne el producto", "Registro de productos", 2);//Explica al usuario los pasos para crear un producto nuevo 
-                                            CrearProductos(CrearProductoCategoria(ListaCategoria), CrearProductoMarca(ListaMarca), Inventario);
-                                            nuevoProducto = true;
-                                            }else{
+                                                        + "Tercero asigne el producto", "Registro de productos", 2);//Explica al usuario los pasos para crear un producto nuevo 
+                                                CrearProductos(CrearProductoCategoria(ListaCategoria), CrearProductoMarca(ListaMarca), Inventario);
+                                                nuevoProducto = true;
+                                            } else {
                                                 JOptionPane.showMessageDialog(null, "Opción incorrecta", "ERROR", 0);
                                             }
                                             break;
                                         case 2:
-                                            if (nuevoProducto == true){ 
-                                                modificarProductos(Inventario);                                           
-                                            }else{
+                                            if (nuevoProducto == true) {
+                                                modificarProductos(Inventario);
+                                            } else {
                                                 JOptionPane.showMessageDialog(null, "Falta crear Productos", "INFORMACION FALTANTE", 2);
                                             }
                                             break;
                                         case 3:
-                                             if (nuevoProducto == true){
-                                                 mostarProductos (Inventario);
-                                            }else{
-                                                 JOptionPane.showMessageDialog(null, "Falta crear Productos", "INFORMACION FALTANTE", 2);
+                                            if (nuevoProducto == true) {
+                                                mostarProductos(Inventario);
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Falta crear Productos", "INFORMACION FALTANTE", 2);
                                             }
                                             break;
                                         case 4:
@@ -187,24 +199,24 @@ public class Pfinal {
                     break;
 
                 case 2:
-                    if (nuevoProducto == true){                    
-                    ingresaMercaderia(Inventario);
+                    if (nuevoProducto == true) {
+                        ingresaMercaderia(Inventario);
                     } else {
-                         JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
+                        JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
                     }
                     break;
                 case 3:
-                    if (nuevoProducto == true){
+                    if (nuevoProducto == true) {
                         editarPrecio(Inventario);
-                    }else {
-                         JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
                     }
                     break;
                 case 4:
-                    if (nuevoProducto == true){
+                    if (nuevoProducto == true) {
                         mostrarInventario(Inventario);
-                    }else {
-                         JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Debe de Registrar Productos", "INFORMACION FALTANTE", 2);
                     }
                     break;
                 case 5:
@@ -239,7 +251,9 @@ public class Pfinal {
         return lista;
     }
 
+    /*Este método muestra los datos de arreglo categoria, socilita el código y despues retorna para ser alcenado en la variable tempoActual en el main*/
     public static String modificarCategoria1(Categoria lista[]) {//retorna la categoria actual 
+        boolean v1 = false;
         int cont = 0;
         String tempoViejo = null;
         int codCate = 0;
@@ -251,26 +265,29 @@ public class Pfinal {
             }
         }
 
-        for (int i = 0; i < lista.length; i++) {
-            if (lista[i] == null) {
-                cont++;
-                if (cont == lista.length) {
-                    JOptionPane.showMessageDialog(null, "La lista de categorias está vácia, primero debe de crear categorias", "ERROR", 0);
+        codCate = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la categoria a módificar\n" + mensaje, "Modificación de Categoria", -1));
+        for (int j = 0; j < lista.length; j++) {
+            if (lista[j] != null) {
+                if (codCate == lista[j].getIdCategoria()) {
+                    tempoViejo = lista[j].getNomCategoria();
+                    v1 = true;
+                    break;
                 } else {
-                    codCate = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la categoria a módificar\n" + mensaje, "Modificación de Categoria", -1));
-                }
+                    v1 = false;
 
-                for (int j = 0; j < lista.length; j++) {
-                    if (codCate == lista[j].getIdCategoria()) {
-                        tempoViejo = lista[j].getNomCategoria();
-                        break;
-                    }
                 }
             }
         }
+
+        if (v1 == false) {
+            JOptionPane.showMessageDialog(null, "Ingreso un código erroneo", "ERROR", 0);
+        }
+
         return tempoViejo;
     }
 
+    /*Utiliza como parametro la variable tempoActual para buscar en el arreglo categoria el nombre, una ves encontrado se le solicita al usuario modificarlo
+    y retorna como valor el nuevo nombre que se almacena en la variable tempoNuevo*/
     public static String modificarCategoria2(Categoria lista[], String texto) {
         String tempoNuevo = null;
         for (int j = 0; j < lista.length; j++) {
@@ -284,6 +301,8 @@ public class Pfinal {
         return tempoNuevo;
     }
 
+    /*Utiliza como parametros las variables tempoActual, tempoNuevo y arreglo Categoria con estos se validad que lel nombre actual se encuentre el arrelo y despues 
+    ya ubicado se modifica con los datos de tempoNuevo*/
     public static Categoria[] modificarCategoria3(String tempoActual, String tempoNuevo, Categoria lista[]) { //modifica el arreglo categoria
         for (int i = 0; i < lista.length; i++) {
             if (lista[i] != null) {
@@ -340,7 +359,10 @@ public class Pfinal {
         return lista;
     }
 
+    /*Muestra el arreglo y solicita al usuario que el digite el codigo identificador, una vez ingresado si recorre el arrelo y se almacena el nombre de 
+    la marca en la variable tempoViejo y esta se retorna a main*/
     public static String modificarMarca1(Marca lista[]) {//retorna la marca actual que esta en el arreglo 
+        boolean v1 = false;
         int cont = 0;
         String tempoViejo = null;
         int codMarca = 0;
@@ -352,26 +374,27 @@ public class Pfinal {
             }
         }
 
-        for (int i = 0; i < lista.length; i++) {
-            if (lista[i] == null) {
-                cont++;
-                if (cont == lista.length) {
-                    JOptionPane.showMessageDialog(null, "La lista de marcas está vácia, primero debe de crear marcas", "ERROR", 0);
+        codMarca = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la marca a módificar\n" + mensaje, "Modificación de Marcas", -1));
+        for (int j = 0; j < lista.length; j++) {
+            if (lista[j] != null) {
+                if (codMarca == lista[j].getIdMarca()) {
+                    tempoViejo = lista[j].getMarcaNombre();
+                    v1 = true;
+                    break;
                 } else {
-                    codMarca = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la marca a módificar\n" + mensaje, "Modificación de Marcas", -1));
-                }
-
-                for (int j = 0; j < lista.length; j++) {
-                    if (codMarca == lista[j].getIdMarca()) {
-                        tempoViejo = lista[j].getMarcaNombre();
-                        break;
-                    }
+                    v1 = false;
                 }
             }
         }
+        if (v1 == false) {
+            JOptionPane.showMessageDialog(null, "Ingreso un código erroneo", "ERROR", 0);
+        }
+
         return tempoViejo;
     }
 
+    /*Utiliza como parametro la variable tempoActual para buscar en el arreglo Marca el nombre, una ves encontrado se le solicita al usuario modificarlo
+    y retorna como valor el nuevo nombre que se almacena en la variable tempoNuevo*/
     public static String modificarMarca2(Marca lista[], String texto) { //retorna la marca nueva a variable en main
         String tempoNuevo = null;
         for (int j = 0; j < lista.length; j++) {
@@ -385,6 +408,8 @@ public class Pfinal {
         return tempoNuevo;
     }
 
+    /*Utiliza como parametros las variables tempoActual, tempoNuevo y arreglo Marcar con estos se validad que lel nombre actual se encuentre el arrelo y despues 
+    ya ubicado se modifica con los datos de tempoNuevo*/
     public static Marca[] modificarMarca3(String tempoActual, String tempoNuevo, Marca lista[]) { //modifica el arreglo categoria
         for (int i = 0; i < lista.length; i++) {
             if (lista[i] != null) {
@@ -397,6 +422,7 @@ public class Pfinal {
         return lista;
     }
 
+    //Método que módifica el arreglo producto de manera simultanea
     public static Producto[] modificarMarca4(String tempoActual, String tempoNuevo, Producto lista[]) {//modifica todas las marcas en el arreglo producto
         for (int i = 0; i < lista.length; i++) {
             if (lista[i] != null) {
@@ -450,6 +476,7 @@ public class Pfinal {
         return Tempo;
     }
 
+    //Se usa para asignar la marca en el arreglo Producto
     public static String CrearProductoMarca(Marca lista[]) {
         String Tempo = "";
 
@@ -479,6 +506,8 @@ public class Pfinal {
         return Tempo;
     }
 
+    /*Utiliza como parametros los datos retornados de los métodos CrearProductoCategoria y CrearProductoMarca, además del arreglo Producto con todos estos datos solicita
+    el nombre del nuevo producto y lo agrega al arreglo junto con los otros datos*/
     public static Producto[] CrearProductos(String categoria, String marca, Producto lista[]) {
         boolean v1 = false;
         for (int i = 0; i < lista.length; i++) {
@@ -498,50 +527,48 @@ public class Pfinal {
         }
         return lista;
     }
-    
-    public static void mostarProductos (Producto lista[]){
+
+    /*Muestra solamente el nombre y id de arreglo producto*/
+    public static void mostarProductos(Producto lista[]) {
         String mensaje = "";
         for (int i = 0; i < lista.length; i++) {
-            if (lista[i]!=null){
+            if (lista[i] != null) {
                 mensaje = mensaje + lista[i].toString();
             }
-            
+
         }
         JOptionPane.showMessageDialog(null, mensaje, "PRODUCTOS REGISTRADOS", 1);
     }
-    
-    
-    public static Producto[] modificarProductos (Producto lista[]){
+
+    public static Producto[] modificarProductos(Producto lista[]) {
         boolean v1 = false;
         int codProducto = 0;
-         String mensaje = "";
+        String mensaje = "";
         for (int i = 0; i < lista.length; i++) {
-            if (lista[i]!=null){
+            if (lista[i] != null) {
                 mensaje = mensaje + lista[i].toString();
-            }            
+            }
         }
         codProducto = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código del producto a módificar\n" + mensaje, "Modificación de Producto", -1));
         for (int i = 0; i < lista.length; i++) {
-            if (lista[i].getIdProducto()==codProducto){
-                lista[i].setNombreProducto(JOptionPane.showInputDialog(null, "El nombre actual del producto es"+lista[i].getNombreProducto()+
-                        ", ¿Por cual desea cambiarlo?", "MODIFICAR PRODUCTO", 3));
+            if (lista[i].getIdProducto() == codProducto) {
+                lista[i].setNombreProducto(JOptionPane.showInputDialog(null, "El nombre actual del producto es" + lista[i].getNombreProducto()
+                        + ", ¿Por cual desea cambiarlo?", "MODIFICAR PRODUCTO", 3));
                 v1 = true;
                 break;
-                        
-                
-            }            
+
+            }
         }
-        if (v1 == true){
-                JOptionPane.showMessageDialog(null, "Producto modificado con éxito", "MODIFICACIÓN DE PRODUCTOS", 1);
-        } else{
+        if (v1 == true) {
+            JOptionPane.showMessageDialog(null, "Producto modificado con éxito", "MODIFICACIÓN DE PRODUCTOS", 1);
+        } else {
             JOptionPane.showMessageDialog(null, "No se modifico el producto", "ERROR", 0);
         }
-        
-    return lista;}
-    
-    
 
-   /*---------------------------------------------------------METODO MOSTRAR INVENTARIO COMPLETO-----------------------------------------------------------------------------------------------*/
+        return lista;
+    }
+
+    /*---------------------------------------------------------METODO MOSTRAR INVENTARIO COMPLETO-----------------------------------------------------------------------------------------------*/
     //Métoo para mostar el inventario completo
     public static void mostrarInventario(Producto lista[]) {
         String mensaje = "INVENTARIO\n";
@@ -554,9 +581,7 @@ public class Pfinal {
         JOptionPane.showMessageDialog(null, mensaje, "INVENTARIO", 1);
     }
 
-    
-     /*---------------------------------------------------------METODOS PARA EDITAR PRECIO-----------------------------------------------------------------------------------------------*/
-    
+    /*---------------------------------------------------------METODOS PARA EDITAR PRECIO-----------------------------------------------------------------------------------------------*/
     public static Producto[] editarPrecio(Producto lista[]) {
         boolean pr = false;
         String mensaje = "";
@@ -583,9 +608,7 @@ public class Pfinal {
         return lista;
     }
 
-    
-     /*---------------------------------------------------------METODOS PARA INGRESAR MERCADERIA----------------------------------------------------------------------------------------------*/
-    
+    /*---------------------------------------------------------METODOS PARA INGRESAR MERCADERIA----------------------------------------------------------------------------------------------*/
     public static Producto[] ingresaMercaderia(Producto lista[]) {
         boolean mr = false;
         String mensaje = "";

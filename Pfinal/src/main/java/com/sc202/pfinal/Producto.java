@@ -17,7 +17,7 @@ public class Producto {
     private int PrecioProducto;   
     
     public Producto (){
-        idProducto = (int) (Math.random()*300+399);
+        idProducto = (int) (Math.random()*400)+300;
     }
        
 
