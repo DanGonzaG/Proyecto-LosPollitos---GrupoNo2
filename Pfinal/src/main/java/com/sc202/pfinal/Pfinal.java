@@ -15,9 +15,9 @@ public class Pfinal {
     public static void main(String[] args) {
 
         /*Se crean los tres arreglos de objetos*/
-        Categoria[] ListaCategoria = new Categoria[2];
-        Marca[] ListaMarca = new Marca[2];
-        Producto[] Inventario = new Producto[2];
+        Categoria[] ListaCategoria = new Categoria[50];
+        Marca[] ListaMarca = new Marca[50];
+        Producto[] Inventario = new Producto[50];
 
         /*Variables que se usan para almacenar temporamente cualquien dato se modifique en el arreglo categoria y marca*/
         String TempoActual;
