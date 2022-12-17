@@ -33,8 +33,8 @@ public class Producto {
         return cantProducto;
     }
 
-    public void setCantProducto(int cantProducto) {
-        this.cantProducto = cantProducto;
+    public void setCantProducto(int cantProducto) {       
+            this.cantProducto = cantProducto;        
     }
 
     public int getPrecioProducto() {

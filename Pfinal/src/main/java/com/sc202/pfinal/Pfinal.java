@@ -20,17 +20,17 @@ public class Pfinal {
         Producto[] Inventario = new Producto[2];
 
         /*Variables que se usan para almacenar temporamente cualquien dato se modifique en el arreglo categoria y marca*/
-        String TempoActual = "";
-        String TempoNuevo = "";
+        String TempoActual;
+        String TempoNuevo;
 
         /*Variables para validar que cuales métodos pueden ser llamados y cuales no*/
         boolean categoriaNueva = false;
-        boolean categoriaMod = false;
         boolean marcaNueva = false;
-        boolean marcaMod = false;
         boolean nuevoProducto = false;
 
-        int continuar = 0;
+        /*Variable booleanas para evitar que el programa de error cuando se intruducen datos erroneos en el menú*/
+        boolean menu0;
+
         int opc0 = 0; //menú principal
         int opc1 = 0; // menú de registro
         int categoria = 0;//menú categorias
@@ -38,30 +38,58 @@ public class Pfinal {
         int producto = 0; //menú productos
 
         while (opc0 != 5) {
-            opc0 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione una opcion del menú"
-                    + "\n1 Módulo Registro / Modificación"
-                    + "\n2 Módulo Ingresar Mercadería Nueva"
-                    + "\n3 Módulo Editar Precio"
-                    + "\n4 Módulo Ver Invetario"
-                    + "\n5 Salir", "Menú Principal", -1));
+            menu0 = false;
+            while (menu0 == false) {
+                try {
+                    opc0 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione una opcion del menú"
+                            + "\n1 Módulo Registro / Modificación"
+                            + "\n2 Módulo Ingresar Mercadería Nueva"
+                            + "\n3 Módulo Editar Precio"
+                            + "\n4 Módulo Ver Invetario"
+                            + "\n5 Salir", "Menú Principal", -1));
+                    menu0 = true;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                    menu0 = false;
+                }
+            }
             switch (opc0) {
                 case 1:
                     opc1 = 0;
                     while (opc1 != 4) {
-                        opc1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione una opción de menú"
-                                + "\n1 Categorias"
-                                + "\n2 Marcas"
-                                + "\n3 Productos"
-                                + "\n4 Regresar", "REGISTRO Y MODIFICACION", -1));
+                        menu0 = false;
+                        while (menu0 == false) {
+                            try {
+                                opc1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione una opción de menú"
+                                        + "\n1 Categorias"
+                                        + "\n2 Marcas"
+                                        + "\n3 Productos"
+                                        + "\n4 Regresar", "REGISTRO Y MODIFICACION", -1));
+                                menu0 = true;
+                            } catch (NumberFormatException e) {
+                                JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                                menu0 = false;
+                            }
+                        }
+
                         switch (opc1) {
                             case 1:
                                 categoria = 0;
                                 while (categoria != 4) {
-                                    categoria = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
-                                            + "\n1 Registrar categorias"
-                                            + "\n2 Modificar una categoría"
-                                            + "\n3 Mostrar Categorias registradas"
-                                            + "\n4 Regresar", "CATEGORIAS", -1));
+                                    menu0 = false;
+                                    while (menu0 == false) {
+                                        try {
+                                            categoria = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
+                                                    + "\n1 Registrar categorias"
+                                                    + "\n2 Modificar una categoría"
+                                                    + "\n3 Mostrar Categorias registradas"
+                                                    + "\n4 Regresar", "CATEGORIAS", -1));
+                                            menu0 = true;
+                                        } catch (NumberFormatException e) {
+                                            JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                                            menu0 = false;
+                                        }
+                                    }
                                     switch (categoria) {
                                         case 1:
                                             llenarCategoria(ListaCategoria);
@@ -100,11 +128,20 @@ public class Pfinal {
                             case 2:
                                 marca = 0;
                                 while (marca != 4) {
-                                    marca = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
-                                            + "\n1 Registrar Marcas"
-                                            + "\n2 Modificar una Marca"
-                                            + "\n3 Mostrar Marcas Registradas"
-                                            + "\n4 Regresar", "MARCAS", -1));
+                                    menu0 = false;
+                                    while (menu0 == false) {
+                                        try {
+                                            marca = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
+                                                    + "\n1 Registrar Marcas"
+                                                    + "\n2 Modificar una Marca"
+                                                    + "\n3 Mostrar Marcas Registradas"
+                                                    + "\n4 Regresar", "MARCAS", -1));
+                                            menu0 = true;
+                                        } catch (NumberFormatException e) {
+                                            JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                                            menu0 = false;
+                                        }
+                                    }
                                     switch (marca) {
                                         case 1:
                                             LlenarMarca(ListaMarca);
@@ -143,11 +180,20 @@ public class Pfinal {
 
                                 producto = 0;
                                 while (producto != 4) {
-                                    producto = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
-                                            + "\n1 Registrar Productos"
-                                            + "\n2 Modificar un Producto"
-                                            + "\n3 Mostrar Productos Registrados"
-                                            + "\n4 Regresar", "PRODUCTOS", -1));
+                                    menu0 = false;
+                                    while (menu0 == false) {
+                                        try {
+                                            producto = Integer.parseInt(JOptionPane.showInputDialog(null, "Selecciones una opción de menú"
+                                                    + "\n1 Registrar Productos"
+                                                    + "\n2 Modificar un Producto"
+                                                    + "\n3 Mostrar Productos Registrados"
+                                                    + "\n4 Regresar", "PRODUCTOS", -1));
+                                            menu0 = true;
+                                        } catch (NumberFormatException e) {
+                                            JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                                            menu0 = false;
+                                        }
+                                    }
                                     switch (producto) {
                                         case 1:
                                             if (categoriaNueva == false && marcaNueva == false) {
@@ -253,6 +299,7 @@ public class Pfinal {
 
     /*Este método muestra los datos de arreglo categoria, socilita el código y despues retorna para ser alcenado en la variable tempoActual en el main*/
     public static String modificarCategoria1(Categoria lista[]) {//retorna la categoria actual 
+        boolean menu0 = false;
         boolean v1 = false;
         int cont = 0;
         String tempoViejo = null;
@@ -265,7 +312,15 @@ public class Pfinal {
             }
         }
 
-        codCate = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la categoria a módificar\n" + mensaje, "Modificación de Categoria", -1));
+        while (menu0 == false) {
+            try {
+                codCate = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la categoria a módificar\n" + mensaje, "Modificación de Categoria", -1));
+                menu0 = true;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                menu0 = false;
+            }
+        }
         for (int j = 0; j < lista.length; j++) {
             if (lista[j] != null) {
                 if (codCate == lista[j].getIdCategoria()) {
@@ -278,11 +333,9 @@ public class Pfinal {
                 }
             }
         }
-
         if (v1 == false) {
             JOptionPane.showMessageDialog(null, "Ingreso un código erroneo", "ERROR", 0);
         }
-
         return tempoViejo;
     }
 
@@ -374,7 +427,16 @@ public class Pfinal {
             }
         }
 
-        codMarca = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la marca a módificar\n" + mensaje, "Modificación de Marcas", -1));
+        boolean menu0 = false;
+        while (menu0 == false) {
+            try {
+                codMarca = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la marca a módificar\n" + mensaje, "Modificación de Marcas", -1));
+                menu0 = true;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                menu0 = false;
+            }
+        }
         for (int j = 0; j < lista.length; j++) {
             if (lista[j] != null) {
                 if (codMarca == lista[j].getIdMarca()) {
@@ -449,6 +511,7 @@ public class Pfinal {
     //Se usa para asignar las categorias en el arreglo Producto
     public static String CrearProductoCategoria(Categoria lista[]) {
         String Tempo = "";
+        boolean menu0;
 
         boolean v1 = false;//se usa para el ciclo que comprueba si el codigo es correto
         int codCate = 0;
@@ -460,8 +523,16 @@ public class Pfinal {
         }
 
         while (v1 == false) {
-            codCate = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la categoria\n" + mensaje, "Asignación de Categoria", -1));
-
+            menu0 = false;
+            while (menu0 == false) {
+                try {
+                    codCate = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la categoria\n" + mensaje, "Asignación de Categoria", -1));
+                    menu0 = true;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                    menu0 = false;
+                }
+            }
             for (int i = 0; i < lista.length; i++) {
                 if (codCate == lista[i].getIdCategoria()) {
                     v1 = true;
@@ -479,7 +550,7 @@ public class Pfinal {
     //Se usa para asignar la marca en el arreglo Producto
     public static String CrearProductoMarca(Marca lista[]) {
         String Tempo = "";
-
+        boolean menu0;
         boolean v1 = false;//se usa para el ciclo que comprueba si el codigo es correto
         int codMarca = 0;
         String mensaje = "";
@@ -490,8 +561,16 @@ public class Pfinal {
         }
 
         while (v1 == false) {
-            codMarca = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la marca\n" + mensaje, "Asignación de Marca", -1));
-
+            menu0 = false;
+            while (menu0 == false) {
+                try {
+                    codMarca = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código de la marca\n" + mensaje, "Asignación de Marca", -1));
+                    menu0 = true;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                    menu0 = false;
+                }
+            }
             for (int i = 0; i < lista.length; i++) {
                 if (codMarca == lista[i].getIdMarca()) {
                     v1 = true;
@@ -533,7 +612,7 @@ public class Pfinal {
         String mensaje = "";
         for (int i = 0; i < lista.length; i++) {
             if (lista[i] != null) {
-                mensaje = mensaje + lista[i].toString();
+                mensaje = mensaje + lista[i].toString()+"\n";
             }
 
         }
@@ -541,15 +620,24 @@ public class Pfinal {
     }
 
     public static Producto[] modificarProductos(Producto lista[]) {
+        boolean menu0 = false;
         boolean v1 = false;
         int codProducto = 0;
         String mensaje = "";
         for (int i = 0; i < lista.length; i++) {
             if (lista[i] != null) {
-                mensaje = mensaje + lista[i].toString();
+                mensaje = mensaje + lista[i].toString()+"\n";
             }
         }
-        codProducto = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código del producto a módificar\n" + mensaje, "Modificación de Producto", -1));
+        while (menu0 == false) {
+            try {
+                codProducto = Integer.parseInt(JOptionPane.showInputDialog(null, "Seleccione el código del producto a módificar\n" + mensaje, "Modificación de Producto", -1));
+                menu0 = true;
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                menu0 = false;
+            }
+        }
         for (int i = 0; i < lista.length; i++) {
             if (lista[i].getIdProducto() == codProducto) {
                 lista[i].setNombreProducto(JOptionPane.showInputDialog(null, "El nombre actual del producto es" + lista[i].getNombreProducto()
@@ -583,6 +671,7 @@ public class Pfinal {
 
     /*---------------------------------------------------------METODOS PARA EDITAR PRECIO-----------------------------------------------------------------------------------------------*/
     public static Producto[] editarPrecio(Producto lista[]) {
+        boolean menu0;
         boolean pr = false;
         String mensaje = "";
         int id = 0;
@@ -592,11 +681,21 @@ public class Pfinal {
             }
         }
         while (pr == false) {
-            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digete el codigo del producto que desea cambiar\n" + mensaje, "EDITAR PRECIO", 3));
+            menu0 = false;
+            while (menu0 == false) {
+                try {
+                    id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digete el codigo del producto que desea cambiar\n" + mensaje, "EDITAR PRECIO", 3));
+                    menu0 = true;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                    menu0 = false;
+                }
+            }
             for (int i = 0; i < lista.length; i++) {
                 if (id == lista[i].getIdProducto()) {
                     pr = true;
-                    lista[i].setPrecioProducto(Integer.parseInt(JOptionPane.showInputDialog(null, "Cual es el nuevo precio del producto", "EDITAR PRECIO", 3)));
+                    lista[i].setPrecioProducto(Integer.parseInt(JOptionPane.showInputDialog(null, "Cual es el nuevo precio del producto 5" 
+                            + lista[i].getNombreProducto(), "EDITAR PRECIO", 3)));
                     JOptionPane.showMessageDialog(null, "Precio agregado con exito", "EDITAR PRECIO", 1);
                     break;
                 }
@@ -619,11 +718,22 @@ public class Pfinal {
             }
         }
         while (mr == false) {
-            id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digete el codigo del producto que desea cambiar\n" + mensaje, "INGRESAR MERCADERIA", 3));
+            boolean menu0 = false;
+            while (menu0 == false) {
+                try {
+                    id = Integer.parseInt(JOptionPane.showInputDialog(null, "Digete el codigo del producto\n" + mensaje, "INGRESAR MERCADERIA", 3));
+                    menu0 = true;
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Solo puede ingresar numeros", "ERROR", 0);
+                    menu0 = false;
+                }
+            }
+
             for (int i = 0; i < lista.length; i++) {
                 if (id == lista[i].getIdProducto()) {
                     mr = true;
-                    lista[i].setCantProducto(Integer.parseInt(JOptionPane.showInputDialog(null, "Cuanta mercaderia desea agregar", "INGRESAR MERCADERIA", 3)));
+                    lista[i].setCantProducto(Integer.parseInt(JOptionPane.showInputDialog(null, "Cuanta mercaderia desea agregar para el producto " + lista[i].getNombreProducto(),
+                            "INGRESAR MERCADERIA", 3)));
                     JOptionPane.showMessageDialog(null, "Mercaderia agregada con exito", "INGRESAR MERCADERIA", 1);
                     break;
                 }
